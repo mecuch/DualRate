@@ -17,7 +17,7 @@ class MainMenu extends StatelessWidget {
           width: double.infinity,
           child: Column(
             children: [
-              const SizedBox(height: 120),
+              const SizedBox(height: 100),
               Image.asset(ImageLoader.llogo,
               width: 320,
               height: 120),
@@ -26,8 +26,8 @@ class MainMenu extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     child: Image.asset(ImageLoader.curr_butt,
-                    width: 133,
-                    height: 144,),
+                    width: 120,
+                    height: 240,),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -39,8 +39,8 @@ class MainMenu extends StatelessWidget {
                   ),
                   ElevatedButton(
                     child: Image.asset(ImageLoader.cryptocurr_butt,
-                      width: 133,
-                      height: 144,),
+                      width: 120,
+                      height: 240,),
                     onPressed: () {
                       Navigator.push(
                         context,

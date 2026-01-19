@@ -5,15 +5,36 @@ class CryptoCurrencyMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cryptoCurrencies = <Map<String, String>>[
+      {'code': 'BTC', 'name': 'Bitcoin', 'price': '268,000 PLN'},
+      {'code': 'ETH', 'name': 'Ethereum', 'price': '14,800 PLN'},
+      {'code': 'SOL', 'name': 'Solana', 'price': '680 PLN'},
+      {'code': 'ADA', 'name': 'Cardano', 'price': '2.40 PLN'},
+      {'code': 'XRP', 'name': 'Ripple', 'price': '2.70 PLN'},
+    ];
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back to Main Menu!!'),
+        appBar: AppBar(
+          title: const Text('Przegląd kryptowalut'),
         ),
-      ),
+        body: ListView.separated(
+          padding: const EdgeInsets.all(16),
+          itemCount: cryptoCurrencies.length,
+          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          itemBuilder: (context, index) {
+            final crypto = cryptoCurrencies[index];
+            return Card(
+              elevation: 2,
+              child: ListTile(
+                leading: CircleAvatar(
+                  child: Text(crypto['code'] ?? ''),
+                ),
+                title: Text(crypto['name'] ?? ''),
+                subtitle: Text('Cena: ${crypto['price']}'),
+                trailing: const Icon(Icons.chevron_right),
+              ),
+            );
+          },
+        )
     );
   }
 }

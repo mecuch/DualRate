@@ -10,7 +10,7 @@ class ButtonText extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        fontSize: 24,
+        fontSize: 35,
         color: Color(0xFF028040),
         fontFamily: 'Berlin Sans FB Demi Bold',
       ),
