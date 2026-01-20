@@ -1,4 +1,4 @@
-import 'package:dualrate/features/main_menu/main_page.dart';
+import 'package:dualrate/screens/main_menu/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

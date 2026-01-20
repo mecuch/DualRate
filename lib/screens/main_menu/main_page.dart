@@ -1,9 +1,8 @@
-import 'package:dualrate/core/utils/images.dart';
-import 'package:dualrate/core/utils/widgets.dart';
-import 'package:dualrate/features/currency/curr_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import '../currency/curr_main.dart';
+import '../utils/images.dart';
+import '../utils/widgets.dart';
 import 'about.dart';
 
 class MainMenu extends StatelessWidget {
@@ -20,7 +19,8 @@ class MainMenu extends StatelessWidget {
               const SizedBox(height: 100),
               Image.asset(ImageLoader.llogo,
               width: 320,
-              height: 120),
+              height: 100),
+              const Text("BLoC"),
               const SizedBox(height: 70),
               Row(
                 children: [
