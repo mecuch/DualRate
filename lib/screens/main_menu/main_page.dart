@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../cryptocurrency/crytpo_main.dart';
 import '../currency/curr_main.dart';
 import '../utils/images.dart';
 import '../utils/widgets.dart';
@@ -45,7 +46,7 @@ class MainMenu extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                          builder: (context) => const CurrencyMain(),
+                          builder: (context) => const CryptoCurrencyMain(),
                         ),
                       );
                     },
