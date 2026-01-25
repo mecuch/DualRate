@@ -5,6 +5,7 @@ import '../../blocs/currency/currency_bloc.dart';
 import '../../blocs/currency/currency_event.dart';
 import '../../blocs/currency/currency_state.dart';
 import '../../data/currency/currency_repository.dart';
+import '../currency_det/currency_det.dart';
 
 class CurrencyMain extends StatelessWidget {
   const CurrencyMain({super.key});
@@ -46,30 +47,42 @@ class CurrencyMain extends StatelessWidget {
                           horizontal: 16,
                           vertical: 12,
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              currency.flag,
-                              style: const TextStyle(fontSize: 28),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Text(
-                                currency.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                        child: ElevatedButton(
+                          child: Row(
+                            children: [
+                              Text(
+                                currency.flag,
+                                style: const TextStyle(fontSize: 28),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Text(
+                                  currency.name,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Text(
-                              '${currency.rate.toStringAsFixed(2)} PLN',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
+                              Text(
+                                '${currency.rate.toStringAsFixed(2)} PLN',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (context) => CurrencyDetailsScreen(code: currency.code,
+                                  name: currency.name,
+                                  flag: currency.flag,),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     );

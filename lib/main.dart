@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-      title: 'Navigation Basics',
+      title: 'DualRate',
       home: const MainMenu(),
       theme: ThemeData(
         fontFamily: "BerlinSansFBDemi-Bold"
