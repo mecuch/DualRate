@@ -5,6 +5,8 @@ import '../../blocs/crypto/crypto_bloc.dart';
 import '../../blocs/crypto/crypto_event.dart';
 import '../../blocs/crypto/crypto_state.dart';
 import '../../data/crypto/crypto_repository.dart';
+import '../utils/colors.dart';
+import '../utils/widgets.dart';
 
 
 class CryptoCurrencyMain extends StatelessWidget {
@@ -13,8 +15,13 @@ class CryptoCurrencyMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: ColorLoader.main_green,
         appBar: AppBar(
-          title: const Text('Przegląd kryptowalut'),
+            title: const SmallText(text: "Cryptocurrency Overwiew"),
+            backgroundColor: Colors.black,
+            foregroundColor: ColorLoader.main_green,
+            elevation: 4,
+            centerTitle: true
         ),
         body: BlocProvider(
           create: (_) => CryptoBloc(

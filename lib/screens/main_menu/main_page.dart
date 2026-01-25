@@ -21,55 +21,30 @@ class MainMenu extends StatelessWidget {
               Image.asset(ImageLoader.llogo,
               width: 320,
               height: 100),
-              const Text("BLoC"),
+              const SmallText(text: "v0.1"),
               const SizedBox(height: 70),
-              Row(
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    child: Image.asset(ImageLoader.curr_butt,
-                    width: 120,
-                    height: 240,),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (context) => const CurrencyMain(),
-                        ),
-                      );
-                    },
-                  ),
-                  ElevatedButton(
-                    child: Image.asset(ImageLoader.cryptocurr_butt,
-                      width: 120,
-                      height: 240,),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (context) => const CryptoCurrencyMain(),
-                        ),
-                      );
-                    },
-                  ),
+                  ImageButton(targetPage: CurrencyMain(), imagePath: ImageLoader.curr_butt),
+                  ImageButton(targetPage: CryptoCurrencyMain(), imagePath: ImageLoader.cryptocurr_butt),
                 ],
               ),
-              const SizedBox(height: 90),
-              ElevatedButton(
-                  onPressed:() {
+              const SizedBox(height: 30),
+              AppButton(text: "About",
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
                         builder: (context) => const About(),
                       ),
                     );
-                  },
-                  child: const ButtonText("About")),
+              },),
               const SizedBox(height: 10),
-              ElevatedButton(
-                  onPressed:() {
+              AppButton(text: "Exit",
+                  onPressed: () {
                     SystemNavigator.pop();
-                  },
-                  child: const ButtonText("Exit"))
+                  },)
             ],
           ),
         ),

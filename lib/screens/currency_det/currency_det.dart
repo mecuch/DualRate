@@ -6,6 +6,8 @@ import '../../blocs/currency_det/currency_det_event.dart';
 import '../../blocs/currency_det/currency_det_state.dart';
 import '../../data/currency_det/currency_det_model.dart';
 import '../../data/currency_det/currency_det_repository.dart';
+import '../utils/colors.dart';
+import '../utils/widgets.dart';
 
 class CurrencyDetailsScreen extends StatelessWidget {
   const CurrencyDetailsScreen({
@@ -23,7 +25,11 @@ class CurrencyDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: SmallText(text: name),
+        backgroundColor: Colors.black,
+        foregroundColor: ColorLoader.main_green,
+        elevation: 4,
+        centerTitle: true,
       ),
       body: BlocProvider(
         create: (_) => CurrencyDetailsBloc(

@@ -1,3 +1,4 @@
+import 'package:dualrate/screens/utils/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,6 +7,7 @@ import '../../blocs/currency/currency_event.dart';
 import '../../blocs/currency/currency_state.dart';
 import '../../data/currency/currency_repository.dart';
 import '../currency_det/currency_det.dart';
+import '../utils/colors.dart';
 
 class CurrencyMain extends StatelessWidget {
   const CurrencyMain({super.key});
@@ -13,8 +15,13 @@ class CurrencyMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: ColorLoader.main_green,
         appBar: AppBar(
-          title: const Text('Przegląd walut'),
+          title: const SmallText(text: "Currency Overwiew"),
+          backgroundColor: Colors.black,
+          foregroundColor: ColorLoader.main_green,
+          elevation: 4,
+          centerTitle: true
         ),
         body: BlocProvider(
           create: (_) =>

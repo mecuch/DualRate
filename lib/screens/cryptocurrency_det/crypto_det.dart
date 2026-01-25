@@ -6,6 +6,8 @@ import '../../blocs/crypto_det/crypto_det_event.dart';
 import '../../blocs/crypto_det/crypto_det_state.dart';
 import '../../data/crypto_det/crypto_det_model.dart';
 import '../../data/crypto_det/crypto_det_repository.dart';
+import '../utils/colors.dart';
+import '../utils/widgets.dart';
 
 class CryptoCurrencyDetails extends StatelessWidget {
   const CryptoCurrencyDetails({
@@ -21,7 +23,11 @@ class CryptoCurrencyDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(cryptoName),
+          title: SmallText(text: cryptoName),
+          backgroundColor: Colors.black,
+          foregroundColor: ColorLoader.main_green,
+          elevation: 4,
+          centerTitle: true
       ),
       body: BlocProvider(
         create: (_) => CryptoDetailsBloc(
