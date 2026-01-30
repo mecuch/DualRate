@@ -24,6 +24,7 @@ class CurrencyDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorLoader.main_green,
       appBar: AppBar(
         title: SmallText(text: name),
         backgroundColor: Colors.black,
@@ -76,11 +77,6 @@ class _CurrencyDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final change = details.change;
-    final changeColor = change > 0
-        ? Colors.green
-        : change < 0
-        ? Colors.red
-        : Theme.of(context).colorScheme.onSurface;
     final changePrefix = change > 0 ? '+' : '';
 
     return ListView(
@@ -89,45 +85,43 @@ class _CurrencyDetailsView extends StatelessWidget {
         _HeaderCard(details: details),
         const SizedBox(height: 12),
         _SectionCard(
-          title: 'Zmiana',
+          title: 'Change',
           rows: [
             _DetailsRowData(
-              label: 'Zmiana (ostatni dzień)',
+              label: 'Change - last day',
               value: '$changePrefix${_formatMoney(change)} PLN',
-              valueColor: changeColor,
             ),
             _DetailsRowData(
-              label: 'Zmiana % (ostatni dzień)',
+              label: 'Change % - last day)',
               value: '$changePrefix${_formatPercent(details.changePercent)}',
-              valueColor: changeColor,
             ),
             _DetailsRowData(
-              label: 'Ostatnia aktualizacja',
+              label: 'Last update:',
               value: _formatDate(details.lastUpdated),
             ),
           ],
         ),
         const SizedBox(height: 12),
         _SectionCard(
-          title: 'Zakres (${details.daysRange} dni)',
+          title: 'Exchange range (${details.daysRange} days)',
           rows: [
             _DetailsRowData(
-              label: 'Minimum',
+              label: 'Min',
               value: '${_formatMoney(details.minMid)} PLN',
             ),
             _DetailsRowData(
-              label: 'Maksimum',
+              label: 'Max',
               value: '${_formatMoney(details.maxMid)} PLN',
             ),
             _DetailsRowData(
-              label: 'Aktualny kurs',
+              label: 'Exchange rate',
               value: '${_formatMoney(details.latest.mid)} PLN',
             ),
           ],
         ),
         const SizedBox(height: 12),
         _SectionCard(
-          title: 'Ostatnie notowania',
+          title: 'Last quotes',
           rows: details.history
               .reversed
               .take(7)
@@ -154,56 +148,31 @@ class _HeaderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      color: ColorLoader.main_black,
+      elevation: 7,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            Text(
-              details.flag,
-              style: const TextStyle(fontSize: 36),
-            ),
+            Image.asset(details.flag,
+            width: 45, height: 45,),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    details.name,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+                  VerySmallTextWhite(text: details.name),
                   const SizedBox(height: 4),
-                  Text(
-                    details.code,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
-                  ),
+                  VerySmallTextWhite(text: details.code)
                 ],
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text(
-                  'Kurs',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                const VerySmallTextWhite(text: "Exchange rate"),
                 const SizedBox(height: 4),
-                Text(
-                  '${_formatMoney(details.latest.mid)} PLN',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                VerySmallTextWhite(text: '${_formatMoney(details.latest.mid)} PLN')
               ],
             ),
           ],
@@ -222,19 +191,14 @@ class _SectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 1.5,
+      color: ColorLoader.main_black,
+      elevation: 4,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            VerySmallTextWhite(text: title),
             const SizedBox(height: 12),
             ...rows
                 .map(
@@ -243,7 +207,6 @@ class _SectionCard extends StatelessWidget {
                 child: _DetailsRow(data: row),
               ),
             )
-                .toList(),
           ],
         ),
       ),
@@ -255,12 +218,10 @@ class _DetailsRowData {
   const _DetailsRowData({
     required this.label,
     required this.value,
-    this.valueColor,
   });
 
   final String label;
   final String value;
-  final Color? valueColor;
 }
 
 class _DetailsRow extends StatelessWidget {
@@ -270,29 +231,13 @@ class _DetailsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final valueStyle = TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w600,
-      color: data.valueColor ?? Theme.of(context).colorScheme.onSurface,
-    );
-
     return Row(
       children: [
         Expanded(
-          child: Text(
-            data.label,
-            style: TextStyle(
-              fontSize: 14,
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-          ),
+          child: VerySmallTextWhite(text: data.label)
         ),
         const SizedBox(width: 12),
-        Text(
-          data.value,
-          textAlign: TextAlign.end,
-          style: valueStyle,
-        ),
+        VerySmallTextWhite(text: data.value)
       ],
     );
   }

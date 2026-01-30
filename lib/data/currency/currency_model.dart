@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:dualrate/screens/utils/images.dart';
+
 class CurrencyModel {
   CurrencyModel({
     required this.code,
@@ -22,14 +26,22 @@ class CurrencyModel {
   }
 
   static String _flagForCode(String code) {
-    const flags = {
-      'USD': '🇺🇸',
-      'EUR': '🇪🇺',
-      'GBP': '🇬🇧',
-      'CHF': '🇨🇭',
-      'JPY': '🇯🇵',
-      'PLN': '🇵🇱',
+    var flags = {
+      'USD': ImageLoader.usa,
+      'EUR': ImageLoader.eur,
+      'GBP': ImageLoader.gb,
+      'CHF': ImageLoader.chf,
+      'JPY': ImageLoader.jpy,
+      'PLN': ImageLoader.pln,
+      'THB': ImageLoader.thb,
+      'AUD': ImageLoader.aud,
+      'HKD': ImageLoader.hkd,
+      'CAD': ImageLoader.cad,
+      'SGD': ImageLoader.sgd,
+      'HUF': ImageLoader.huf,
+      'NZD': ImageLoader.nzd
+
     };
-    return flags[code] ?? '🏳️';
+    return flags[code] ?? 'XXX';
   }
 }

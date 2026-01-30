@@ -21,6 +21,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   fonts:
@@ -33,3 +34,7 @@ flutter:
     - assets/images/
     - assets/fonts/
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"

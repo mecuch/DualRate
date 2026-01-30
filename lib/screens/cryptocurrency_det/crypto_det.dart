@@ -22,6 +22,7 @@ class CryptoCurrencyDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorLoader.main_green,
       appBar: AppBar(
           title: SmallText(text: cryptoName),
           backgroundColor: Colors.black,
@@ -41,7 +42,7 @@ class CryptoCurrencyDetails extends StatelessWidget {
             }
             if (state is CryptoDetailsFailure) {
               return Center(
-                child: Text('Błąd: ${state.message}'),
+                child: VerySmallText(text: 'Błąd: ${state.message}'),
               );
             }
             if (state is CryptoDetailsLoaded) {
@@ -50,7 +51,7 @@ class CryptoCurrencyDetails extends StatelessWidget {
                   : null;
               if (details == null) {
                 return const Center(
-                  child: Text('Brak danych szczegółowych.'),
+                  child: VerySmallText(text: 'No specific data!.'),
                 );
               }
               return _CryptoDetailsView(details: details);
@@ -89,14 +90,14 @@ class _CryptoDetailsView extends StatelessWidget {
     final rows = <_DetailsRowData>[
       _DetailsRowData(label: 'ID', value: details.id),
       _DetailsRowData(label: 'Symbol', value: details.symbol),
-      _DetailsRowData(label: 'Nazwa', value: details.name),
+      _DetailsRowData(label: 'Name', value: details.name),
       _DetailsRowData(label: 'Rank', value: details.rank.toString()),
       _DetailsRowData(
-        label: 'Cena (PLN)',
+        label: 'Price (PLN)',
         value: '${_formatMoney(details.pricePln)} PLN',
       ),
       _DetailsRowData(
-        label: 'Cena (USD)',
+        label: 'Price (USD)',
         value: '${_formatMoney(details.priceUsd)} USD',
       ),
       _DetailsRowData(
@@ -104,11 +105,11 @@ class _CryptoDetailsView extends StatelessWidget {
         value: '${_formatMoney(details.marketCapPln)} PLN',
       ),
       _DetailsRowData(
-        label: 'Wolumen 24h (PLN)',
+        label: 'Volume 24h (PLN)',
         value: '${_formatMoney(details.volume24hPln)} PLN',
       ),
       _DetailsRowData(
-        label: 'Zmiana 24h',
+        label: 'Fluctuation 24h',
         value: _formatPercent(details.change24hPercent),
       ),
       _DetailsRowData(
@@ -117,7 +118,7 @@ class _CryptoDetailsView extends StatelessWidget {
       ),
       _DetailsRowData(label: 'Data ATH', value: _formatDate(details.athDate)),
       _DetailsRowData(
-        label: 'Ostatnia aktualizacja',
+        label: 'Last update:',
         value: _formatDate(details.lastUpdated),
       ),
     ];
@@ -146,30 +147,18 @@ class _DetailsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 1.5,
+      color: ColorLoader.main_black,
+      elevation: 3.5,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         child: Row(
           children: [
             Expanded(
-              child: Text(
-                data.label,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              child:VerySmallTextWhite(text: data.label)
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(
-                data.value,
-                textAlign: TextAlign.end,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              child: VerySmallTextWhite(text: data.value)
             ),
           ],
         ),

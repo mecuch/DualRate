@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../cryptocurrency/crytpo_main.dart';
 import '../currency/curr_main.dart';
+import '../utils/colors.dart';
 import '../utils/images.dart';
 import '../utils/widgets.dart';
 import 'about.dart';
@@ -13,6 +14,7 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: ColorLoader.other_green,
         body: SizedBox(
           width: double.infinity,
           child: Column(

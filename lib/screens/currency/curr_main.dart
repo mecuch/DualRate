@@ -1,7 +1,6 @@
 import 'package:dualrate/screens/utils/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../blocs/currency/currency_bloc.dart';
 import '../../blocs/currency/currency_event.dart';
 import '../../blocs/currency/currency_state.dart';
@@ -11,6 +10,7 @@ import '../utils/colors.dart';
 
 class CurrencyMain extends StatelessWidget {
   const CurrencyMain({super.key});
+  static const int visibleLimit = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -36,61 +36,56 @@ class CurrencyMain extends StatelessWidget {
               }
               if (state is CurrencyFailure) {
                 return Center(
-                  child: Text('Błąd: ${state.message}'),
+                  child: VerySmallTextWhite(text: 'Błąd: ${state.message}'),
                 );
               }
               if (state is CurrencyLoaded) {
-                final currencies = state.currencies;
+                final currencies = state.currencies.take(visibleLimit).toList();
                 return ListView.separated(
                   padding: const EdgeInsets.all(16),
                   itemCount: currencies.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 12),
+                  separatorBuilder: (_, __) => const SizedBox(height: 10),
                   itemBuilder: (context, index) {
                     final currency = currencies[index];
-                    return Card(
-                      elevation: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
-                        ),
-                        child: ElevatedButton(
-                          child: Row(
-                            children: [
-                              Text(
-                                currency.flag,
-                                style: const TextStyle(fontSize: 28),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: ColorLoader.main_black,
+                              elevation: 6,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 24,
+                                vertical: 14,
                               ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Text(
-                                  currency.name,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)
                               ),
-                              Text(
-                                '${currency.rate.toStringAsFixed(2)} PLN',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (context) => CurrencyDetailsScreen(code: currency.code,
-                                  name: currency.name,
-                                  flag: currency.flag,),
-                              ),
-                            );
-                          },
+                        child: Row(
+                          children: [
+                            Image.asset(currency.flag, width: 45, height: 45,),
+                            const SizedBox(width: 25),
+                            VerySmallText(text: currency.code),
+                            const SizedBox(width: 45),
+                            VerySmallTextWhite(
+                              text: '${currency.rate.toStringAsFixed(2)} PLN',
+                            ),
+                          ],
                         ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (context) => CurrencyDetailsScreen(code: currency.code,
+                                name: currency.name,
+                                flag: currency.flag,),
+                            ),
+                          );
+                        },
+
                       ),
                     );
                   },

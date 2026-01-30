@@ -45,47 +45,44 @@ class CryptoCurrencyMain extends StatelessWidget {
                   separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     final crypto = cryptos[index];
-                    return Card(
-                      elevation: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
-                        ),
-                        child: ElevatedButton(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                child: Text(crypto.symbol),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Text(
-                                  crypto.name,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                '${crypto.pricePln.toStringAsFixed(2)} PLN',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorLoader.main_black,
+                          elevation: 6,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 14,
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (context) => CryptoCurrencyDetails(cryptoName: crypto.name, coinId: crypto.id),
-                              ),
-                            );
-                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)
+                          ),
                         ),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: ColorLoader.main_green,
+                              child: VerySmallTextWhite(text: crypto.symbol),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: VerySmallTextWhite(text: crypto.name)
+                            ),
+                            VerySmallTextWhite(text: '${crypto.pricePln.toStringAsFixed(2)} PLN')
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (context) => CryptoCurrencyDetails(cryptoName: crypto.name, coinId: crypto.id),
+                            ),
+                          );
+                        },
                       ),
                     );
                   },

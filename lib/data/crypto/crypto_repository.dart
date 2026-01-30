@@ -7,7 +7,8 @@ class CryptoRepository {
   final CoinPaprikaApi _api;
 
   Future<List<CryptoModel>> fetchTopCryptos() async {
-    const symbols = ['BTC', 'ETH', 'SOL', 'ADA', 'XRP'];
+    const symbols = ['BTC', 'ETH', 'SOL', 'ADA', 'XRP', 'ICP', 'OMG', 'TRX', 'BCH'
+    'UNI', 'NEO', 'FIL', 'EOS' ];
     final tickers = await _api.fetchTickersPln();
     final models = tickers
         .whereType<Map<String, dynamic>>()

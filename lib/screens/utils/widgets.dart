@@ -16,7 +16,7 @@ class ImageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
+        backgroundColor: ColorLoader.other_green,
         foregroundColor: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
@@ -56,6 +56,48 @@ class SmallText extends StatelessWidget {
       style: const TextStyle(
           fontSize: 25,
           color: ColorLoader.main_green,
+          fontFamily: "BerlinSansFB"
+      ),
+    );
+  }
+}
+
+class VerySmallText extends StatelessWidget {
+  final String text;
+
+  const VerySmallText({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+          fontSize: 15,
+          color: ColorLoader.main_green,
+          fontFamily: "BerlinSansFB"
+      ),
+    );
+  }
+}
+
+class VerySmallTextWhite extends StatelessWidget {
+  final String text;
+
+  const VerySmallTextWhite({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+          fontSize: 15,
+          color: ColorLoader.main_white,
           fontFamily: "BerlinSansFB"
       ),
     );
